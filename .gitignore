@@ -1,0 +1,17 @@
+# === Angular ===
+client/node_modules/
+client/dist/
+client/.angular/
+
+# === Spring Boot ===
+server/target/
+server/.idea/
+server/.classpath
+server/.project
+server/.settings/
+
+# === General ===
+*.log
+*.iml
+.DS_Store
+.env
