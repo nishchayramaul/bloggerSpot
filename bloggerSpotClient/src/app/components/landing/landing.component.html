@@ -1,0 +1,94 @@
+<div class="landing-container">
+    <div class="info-container">
+        <h1 style="margin-top: 30vh; font-size: 2.5rem; font-weight: 600; color:  #ebd88f; ">
+            Welcome to BloggerSpot
+        </h1>
+        <div class="text-container" style="max-width: 800px; margin: 2rem auto; font-size: 1.1rem; color:#cccccc; line-height: 1.6;">
+            Have a story to share, a place you fell in love with, a recipe that brought people together, or a tech idea that could change the game? Blogsphere is where creativity meets community.
+            <br><br>
+            Whether you're a seasoned writer or just starting out, this is your space to express, inspire, and connect with readers who care.
+            <ul style="list-style: none; padding-left: 0; margin-top: 1.5rem;">
+                <li><strong>• Freedom to Express</strong> – Your words. Your perspective. No limits.</li>
+                <li><strong>• Curated Categories</strong> – Travel, Food, Tech, Lifestyle, and more.</li>
+                <li><strong>• Effortless Publishing</strong> – Clean interface, quick uploads, real-time updates.</li>
+                <li><strong>• Community Engagement</strong> – Comments, likes, shares—built to connect.</li>
+                <li><strong>• Personal Growth</strong> – Build your blog, grow your audience, find your voice.</li>
+            </ul>
+            <br>
+            Start writing. Start connecting. This is where your journey begins.
+        </div>
+    </div>
+    
+    <div class="login-container">
+        <form [formGroup]="form" class="formcontainer">
+            <h2>{{isSignup ? 'Sign Up' : 'Hi there, Login here to explore more !'}}</h2>
+            
+            <!-- Signup fields  -->
+            @if(isSignup) {
+                <div>
+                    <label for="firstName" class="firstname">Enter your First Name here</label>
+                    <input type="text" id="firstName" formControlName="firstName" placeholder="First Name">
+                </div>
+                <div>
+                    <label for="lastName" class="lastname">Enter your Last Name here</label>
+                    <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name">
+                </div>
+                <div>
+                    <label for="email" class="email">Enter your Email here</label>
+                    <input type="email" id="email" formControlName="email" placeholder="Email">
+                </div>
+                <div>
+                    <label for="username" class="username">Enter your Username here</label>
+                    <input type="text" id="username" formControlName="username" placeholder="Username">
+                </div>
+                @if (isSignup && form.get('email')?.invalid && form.touched) {
+                    <div class="error" style="color: red;">Please enter a valid Email</div>
+                  }
+                <div>
+                    <label for="password" class="password">Enter your password here </label>
+                    <input type="password" id="password" formControlName="password" placeholder="Enter your first time Password">
+                </div>
+                <div>
+                    <label for="password" class="password">Confirm your password here </label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your Password">
+                </div>
+
+                @if (isSignup && form.hasError('validatePassword') && form.touched) {
+                    <div class="error" style="color: red;">Passwords do not match</div>
+                  }
+                  
+            }
+
+            
+            <!-- Login fields  -->
+            @if(!isSignup) {
+                <div>
+                    <label for="email" class="email">Enter your Email here</label>
+                    <input type="email" id="email" formControlName="email" placeholder="Email">
+                </div>
+                @if (form.get('email')?.invalid && form.touched) {
+                    <div class="error" style="color: red;">Please enter a valid Email</div>
+                  }
+                
+                <div>
+                    <label for="password" class="password">Enter your password here</label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Password">
+                </div>
+                <a style = "text-decoration: none; color: rgb(37, 37, 37);" href="#">Forgot Password</a>
+            }
+            <div class="button-container">
+                <button id = "submitButton"
+                type="submit" 
+                [disabled]="(isSignup && (form.invalid || form.hasError('passwordMismatch'))) || (!isSignup && (form.get('email')?.invalid || form.get('confirmPassword')?.invalid))" 
+                (click)="isSignup ? signUp() : login()"
+              >
+                {{isSignup ? 'Sign Up' : 'Login'}}
+              </button>
+              
+            <button (click)="onClick()" type="button" >
+                {{isSignup ? 'Back to Login' : 'Click here to Sign Up'}}
+            </button>
+        </div>
+        </form>
+    </div>
+</div>

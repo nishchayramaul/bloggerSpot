@@ -1,0 +1,10 @@
+<nav>
+    <ul class = "navTools">
+       @for( item of navTools;  track item.id){
+        <li>
+            <a [routerLink]="item.path">{{item.name}}</a>
+          </li>
+       }
+    
+    </ul>
+</nav>
