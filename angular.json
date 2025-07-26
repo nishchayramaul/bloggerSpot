@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cozycash": {
+    "bloggerSpot": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/cozycash",
+            "outputPath": "dist/bloggerSpot",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cozycash:build:production"
+              "buildTarget": "bloggerspot:build:production"
             },
             "development": {
-              "buildTarget": "cozycash:build:development"
+              "buildTarget": "bloggerSpot:build:development"
             }
           },
           "defaultConfiguration": "development"

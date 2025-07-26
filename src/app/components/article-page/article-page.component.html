@@ -1,0 +1,20 @@
+@if (article) {
+  <div class="article-container">
+    <div class="article-header">
+      <img class="profile-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" />
+      <div class="meta">
+        <div class="author">{{ article.author }}</div>
+        <div class="date">{{ article.date }}</div>
+      </div>
+    </div>
+    <h1 class="title">{{ article.title }}</h1>
+    <div class="content">
+      <p>{{ article.content }}</p>
+    </div>
+  </div>
+} @else {
+  <div class="article-container">
+    <h1>Article not found</h1>
+    <p>The article you're looking for doesn't exist.</p>
+  </div>
+} 
