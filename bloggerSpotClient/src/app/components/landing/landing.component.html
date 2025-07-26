@@ -37,13 +37,14 @@
                     <label for="email" class="email">Enter your Email here</label>
                     <input type="email" id="email" formControlName="email" placeholder="Email">
                 </div>
+                @if (isSignup && form.get('email')?.invalid && form.touched) {
+                    <div class="error" style="color: red;">Please enter a valid Email</div>
+                  }
                 <div>
                     <label for="username" class="username">Enter your Username here</label>
                     <input type="text" id="username" formControlName="username" placeholder="Username">
                 </div>
-                @if (isSignup && form.get('email')?.invalid && form.touched) {
-                    <div class="error" style="color: red;">Please enter a valid Email</div>
-                  }
+   
                 <div>
                     <label for="password" class="password">Enter your password here </label>
                     <input type="password" id="password" formControlName="password" placeholder="Enter your first time Password">

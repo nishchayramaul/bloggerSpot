@@ -11,15 +11,10 @@ export class ApiService {
    }
 
 
-   signIn(url : string , userDto : any): Observable<any> {
+   post(url : string , userDto : any): Observable<any> {
     return this.httpClient.post<any>(url, userDto, {});
    }
    
-
-   Login(url : string , userDto : any): Observable<any> {
-    return this.httpClient.post<any>(url,userDto,{});
-   
-}
-
+  
 
 }

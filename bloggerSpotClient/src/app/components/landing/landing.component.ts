@@ -5,6 +5,7 @@ import {ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms'
 import { first, last, Observable } from 'rxjs';
 import { ApiService } from '../../services/apiService/apiService';
 import { ToastServiceService } from '../../services/toastService/toast-service.service';
+import { NavigationService } from '../../services/navigationService/navigation.service';
 
 @Component({
   selector: 'app-landing',
@@ -40,10 +41,11 @@ export class LandingComponent {
 
    constructor(
     private readonly apiService: ApiService,
-    private readonly toastService: ToastServiceService
+    private readonly toastService: ToastServiceService,
+    private readonly navigationService: NavigationService
   ) {}
    signUp() {
-    this.apiService.signIn("http://localhost:8080/bloggerSpot/user/signup", this.form.value)
+    this.apiService.post("http://localhost:8080/bloggerSpot/user/signup", this.form.value)
       .subscribe({
         next: (response: any) => {
           if (response) {
@@ -70,11 +72,12 @@ validatePassword(formGroup: AbstractControl): ValidationErrors | null{
 
 
 login(){
-  this.apiService.Login("http://localhost:8080/bloggerSpot/user/login",this.form.value)
+  this.apiService.post("http://localhost:8080/bloggerSpot/user/login",this.form.value)
     .subscribe({
       next: (response: any) => {
         if (response) {
           this.toastService.showToast("Login successful", "success");
+          this.navigationService.goTo('/home');
         }
       },
       error: (err) => {
@@ -85,4 +88,3 @@ login(){
   }
 
 }
-

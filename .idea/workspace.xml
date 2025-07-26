@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="804564f7-86a1-4dd4-8846-08a1b6d48a10" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/landing/landing.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/landing/landing.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/landing/landing.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/landing/landing.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/navbar/navbar.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/navbar/navbar.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/navbar/navbar.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/navbar/navbar.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/toast/toast.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/toast/toast.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/components/toast/toast.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/services/toastService/toast-service.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/services/toastService/toast-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bloggerSpotClient/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/bloggerSpotClient/src/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2zRr7Acgh5am88kcudRmjXyvF0S" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BloggerSpotApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/nishchay/Desktop/bloggerSpot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.BloggerSpotApplication">
+    <configuration name="BloggerSpotApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.project.bloggerSpot.BloggerSpotApplication" />
+      <module name="bloggerSpot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.project.bloggerSpot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BloggerSpotApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="bloggerSpot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.bloggerSpot.BloggerSpotApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BloggerSpotApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="804564f7-86a1-4dd4-8846-08a1b6d48a10" name="Changes" comment="" />
+      <created>1751704556953</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751704556953</updated>
+      <workItem from="1751704558023" duration="15788000" />
+      <workItem from="1751984292668" duration="17101000" />
+      <workItem from="1752259197695" duration="2818000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
