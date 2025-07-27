@@ -11,7 +11,6 @@ import com.project.bloggerSpot.repo.UserMasterRepo;
 import com.project.bloggerSpot.utils.EmailUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,7 +75,6 @@ public class UserRequestHandler {
     }
 
 
-    // user login method
     public ResponseEntity<UserDto> userLogin(UserDto user){
         log.info("Executing user login method");
         UserEntity existingEmail = userMasterRepo.findByEmail(user.getEmail());
@@ -89,8 +87,6 @@ public class UserRequestHandler {
         return ResponseEntity.ok(user);
     }
 
-
-    // otp generator
 
     public static String otpGenerator() {
         List<Integer> digits = new ArrayList<>();
@@ -165,14 +161,17 @@ public class UserRequestHandler {
         return ResponseEntity.ok().body("OTP sent to your email");
     }
 
-    public ResponseEntity<?> resetPassword(PasswordResetRequest passwordResetRequest) {
-        log.info("Resetting password for user: {}", passwordResetRequest.getEmail());
+    public ResponseEntity<?> verifyOtp(PasswordResetRequest passwordResetRequest) {
+        log.info("Verifying OTP for user: {}", passwordResetRequest.getEmail());
 
         UserEntity user = userMasterRepo.findByEmail(passwordResetRequest.getEmail());
         if (user == null) {
             throw new CustomException("No account found with this email");
         }
 
+        if(passwordResetRequest.getNewPassword()!=null){
+          return  resetPassword(passwordResetRequest);
+        }
         // Fetch latest token
         OtpToken token = passwordResetTokenRepo
                 .findTopByUserEmailOrderByCreatedTimestampDesc(passwordResetRequest.getEmail())
@@ -193,20 +192,78 @@ public class UserRequestHandler {
             throw new CustomException("Invalid OTP");
         }
 
-        // All good: reset password
-        user.setPassword(passwordEcoder.encode(passwordResetRequest.getNewPassword()));
-        userMasterRepo.save(user);
-
-        // Mark OTP used
+        // Mark OTP as used after successful verification
         token.setUsed(true);
         passwordResetTokenRepo.save(token);
 
         // Clean up: delete other unused/expired tokens for this user
         passwordResetTokenRepo.deleteAllByUserEmailAndIdNot(passwordResetRequest.getEmail(), token.getId());
 
-        return ResponseEntity.ok("Password reset successful");
+        return ResponseEntity.ok("OTP verified, reset your Password");
     }
 
+
+    public ResponseEntity<?> resetPassword(PasswordResetRequest passwordResetRequest) {
+        log.info("Resetting password for user: {}", passwordResetRequest.getEmail());
+
+        UserEntity user = userMasterRepo.findByEmail(passwordResetRequest.getEmail());
+        if (user == null) {
+            throw new CustomException("No account found with this email");
+        }
+
+        // Validate new password is provided
+        if (passwordResetRequest.getNewPassword() == null || passwordResetRequest.getNewPassword().trim().isEmpty()) {
+            throw new CustomException("New password is required");
+        }
+
+        // Reset password
+        user.setPassword(passwordEcoder.encode(passwordResetRequest.getNewPassword()));
+        userMasterRepo.save(user);
+
+        return ResponseEntity.ok("Password reset successful");
+    }
+//    public ResponseEntity<?> resetPassword(PasswordResetRequest passwordResetRequest) {
+//        log.info("Resetting password for user: {}", passwordResetRequest.getEmail());
+//
+//        UserEntity user = userMasterRepo.findByEmail(passwordResetRequest.getEmail());
+//        if (user == null) {
+//            throw new CustomException("No account found with this email");
+//        }
+//
+//        // Fetch latest token
+//        OtpToken token = passwordResetTokenRepo
+//                .findTopByUserEmailOrderByCreatedTimestampDesc(passwordResetRequest.getEmail())
+//                .orElseThrow(() -> new CustomException("No OTP found. Please request a new one."));
+//
+//        // Check if expired
+//        if (token.getExpiryTime().isBefore(LocalDateTime.now())) {
+//            throw new CustomException("OTP has expired. Please request a new one.");
+//        }
+//
+//        // Check if already used
+//        if (token.isUsed()) {
+//            throw new CustomException("OTP already used. Please request a new one.");
+//        }
+//
+//        // Match OTP
+//        if (!passwordEcoder.matches(passwordResetRequest.getOtp(), token.getHashedOtp())) {
+//            throw new CustomException("Invalid OTP");
+//        }
+//
+//        // All good: reset password
+//        user.setPassword(passwordEcoder.encode(passwordResetRequest.getNewPassword()));
+//        userMasterRepo.save(user);
+//
+//        // Mark OTP used
+//        token.setUsed(true);
+//        passwordResetTokenRepo.save(token);
+//
+//        // Clean up: delete other unused/expired tokens for this user
+//        passwordResetTokenRepo.deleteAllByUserEmailAndIdNot(passwordResetRequest.getEmail(), token.getId());
+//
+//        return ResponseEntity.ok("Password reset successful");
+//    }
+//
 
 
 }

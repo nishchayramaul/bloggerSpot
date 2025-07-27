@@ -34,7 +34,7 @@ public class BloggerSpotController {
 
     @PostMapping(RESET_PASSWORD)
     public ResponseEntity<?> resetPassword(@RequestBody PasswordResetRequest passwordResetRequest){
-        return userRequestHandler.resetPassword(passwordResetRequest);
+        return userRequestHandler.verifyOtp(passwordResetRequest);
     }
 
 

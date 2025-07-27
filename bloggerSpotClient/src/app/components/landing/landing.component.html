@@ -75,12 +75,12 @@
                     <label for="password" class="password">Enter your password here</label>
                     <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Password">
                 </div>
-                <a style = "text-decoration: none; color: rgb(37, 37, 37);" href="#">Forgot Password</a>
+                <a  [routerLink]="['/email-verification']" style = "text-decoration: none; color: rgb(37, 37, 37);">Forgot Password</a>
             }
             <div class="button-container">
-                <button id = "submitButton"
+                <button id="submitButton"
                 type="submit" 
-                [disabled]="(isSignup && (form.invalid || form.hasError('passwordMismatch'))) || (!isSignup && (form.get('email')?.invalid || form.get('confirmPassword')?.invalid))" 
+                [disabled]="isSignup ? !isSignupFormValid() : !isLoginFormValid()" 
                 (click)="isSignup ? signUp() : login()"
               >
                 {{isSignup ? 'Sign Up' : 'Login'}}
