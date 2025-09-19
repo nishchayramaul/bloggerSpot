@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
 
@@ -11,8 +11,8 @@ export class ApiService {
    }
 
 
-   post(url : string , userDto : any): Observable<any> {
-    return this.httpClient.post<any>(url, userDto, {});
+   post(url : string , userDto : any, options: any = {}): Observable<any> {
+    return this.httpClient.post<any>(url, userDto, options);
    }
    
   

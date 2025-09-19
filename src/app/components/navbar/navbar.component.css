@@ -37,6 +37,9 @@
   /* Replace with real icons if needed */
 }
 
+.navbar-container {
+  border-radius: 10px;
+}
 @media (max-width: 600px) {
   .navTools {
     gap: 0.5rem;

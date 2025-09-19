@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { LocalStorageService } from '../../services/localStorage/local-storage.service';
@@ -12,6 +13,7 @@ import { NavigationService } from '../../services/navigationService/navigation.s
 })
 export class NavbarComponent {
 
+  postFrom = FormGroup
   navTools = [
     {
       id: 1,
@@ -37,6 +39,12 @@ export class NavbarComponent {
       path: '',
       icon: 'logout',
       action: 'logout'
+    },
+    {
+      name: 'Post',
+      path: '/postComponent',
+      icon: 'post',
+      action: 'post'
     }
   ];
 

@@ -1,0 +1,48 @@
+<div class="main-container">
+  <div class="email-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formcontainer">
+      <h2 class="email-verification-title">Forgot Password</h2>
+      
+      <div class="email-input-group">
+        <label for="email" class="email-label">Enter your email address</label>
+        
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="email-input"
+          placeholder="Email"
+          formControlName="email"
+        />
+        
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <div class="error" style="color: red;">
+            @if (form.get('email')?.errors?.['required']) {
+              <span>Email is required</span>
+            } @else if (form.get('email')?.errors?.['email']) {
+              <span>Please enter a valid email</span>
+            }
+          </div>
+        }
+      </div>
+      
+      <div class="button-container">
+        <button 
+          type="submit" 
+          class="continue-button"
+          [disabled]="form.invalid"
+        >
+          Continue
+        </button>
+        
+        <button 
+          type="button" 
+          class="back-button"
+          [routerLink]="['/']"
+        >
+          Back to Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
