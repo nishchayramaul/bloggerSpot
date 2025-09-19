@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -41,22 +40,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-=======
-# === Angular ===
-client/node_modules/
-client/dist/
-client/.angular/
-
-# === Spring Boot ===
-server/target/
-server/.idea/
-server/.classpath
-server/.project
-server/.settings/
-
-# === General ===
-*.log
-*.iml
-.DS_Store
-.env
->>>>>>> 698aaec1998775542235c5ff5dc8d8c0a3937baa

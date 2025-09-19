@@ -1,0 +1,24 @@
+<div class="toast-container">
+  @if (message()) {
+    <div class="toast" 
+         [ngClass]="[message()!.type, isExiting() ? 'hide' : 'show']">
+      
+      <div class="toast-stripe"></div>
+      <div class="toast-icon">
+        <div class="icon-content">
+          @switch (message()!.type) {
+            @case ('success') { ✓ }
+            @case ('error') { ✕ }
+            @case ('warning') { ⚠ }
+            @default { ℹ }
+          }
+        </div>
+      </div>
+      <div class="toast-content">
+        <div class="toast-text">{{ message()!.text }}</div>
+        <div class="toast-progress" [ngClass]="'progress-' + message()!.type"></div>
+      </div>
+      <div class="toast-glow"></div>
+    </div>
+  }
+</div>
