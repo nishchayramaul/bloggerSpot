@@ -11,7 +11,7 @@
   border-bottom-right-radius: 1vh;
   margin-bottom: 10vh;
   font-size: clamp(1rem, 1.5vw, 1.4rem);    /* Responsive text size */
-  line-height: 1.6;   /* Better line spacing for readability */
+  line-height: 1.6;   /* Better line/ spacing for readability */
   box-sizing: border-box;
 }
 
