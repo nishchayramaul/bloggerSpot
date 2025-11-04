@@ -37,7 +37,7 @@ export class EmailVerificationComponent {
       this.toastService.showToast('Sending OTP...', 'info', 1500);
       
       // Send email to backend for verification with proper headers
-      this.apiService.post(`http://localhost:8080/bloggerSpot/user/forgotPassword?email=${this.form.value.email}`, {
+      this.apiService.post(`/user/forgotPassword?email=${this.form.value.email}`, {
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export class EmailVerificationComponent {
           this.toastService.showToast(message, 'success');
           this.router.navigate(['/forgot-password']);
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Email verification failed', err);
           
           let errorMsg = "Failed to send OTP. Please try again.";

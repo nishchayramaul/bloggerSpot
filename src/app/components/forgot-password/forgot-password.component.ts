@@ -48,7 +48,7 @@ export class ForgotPasswordComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid && this.otpValue.length === 4) {
-      this.apiService.post('http://localhost:8080/bloggerSpot/user/resetPassword',   {
+      this.apiService.post('/user/resetPassword',   {
         otp: this.otpValue,
         email: this.localStorage.getItem('userEmail'),
       },
@@ -65,7 +65,7 @@ export class ForgotPasswordComponent {
           this.toastService.showToast(message, 'success');
           this.router.navigate(['/reset-password']);
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Email verification failed', err);
           
           let errorMsg = "Something went wrong. Please try again.";

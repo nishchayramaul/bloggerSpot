@@ -84,7 +84,7 @@ export class LandingComponent {
       confirmPassword: this.form.get('confirmPassword')?.value
     };
 
-    this.apiService.post("http://localhost:8080/bloggerSpot/user/signup", signupData)
+    this.apiService.post("/user/signup", signupData)
       .subscribe({
         next: (response: any) => {
           if (response) {
@@ -113,10 +113,16 @@ export class LandingComponent {
       confirmPassword: this.form.get('confirmPassword')?.value 
     };
 
-    this.apiService.post("http://localhost:8080/bloggerSpot/user/login", loginData)
+    this.apiService.post("/auth/login", loginData)
       .subscribe({
         next: (response: any) => {
           if (response) {
+            try {
+              const token = response?.token || response?.jwtToken || response?.accessToken;
+              if (token) {
+                localStorage.setItem('authToken', token);
+              }
+            } catch {}
             this.toastService.showToast("Login successful", "success");
             this.navigationService.goTo('/home');
           }

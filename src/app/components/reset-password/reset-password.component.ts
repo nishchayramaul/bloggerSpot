@@ -43,7 +43,7 @@ export class ResetPasswordComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.apiService.post('http://localhost:8080/bloggerSpot/user/resetPassword',   {
+      this.apiService.post('/user/resetPassword',   {
         email : this.localStorage.getItem('userEmail'),
         newPassword: this.form.value.password
       },
@@ -60,7 +60,7 @@ export class ResetPasswordComponent {
           this.toastService.showToast(message, 'success');
           this.router.navigate(['/']);
         },
-        error: (err) => {     
+        error: (err: any) => {     
           let errorMsg = "Something went wrong. Please try again.";
           if (err?.error) {
             const backendError =  err.error;

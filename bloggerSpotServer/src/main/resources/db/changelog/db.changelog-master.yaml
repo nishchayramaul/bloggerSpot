@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/dbSchema/table.xml
