@@ -7,4 +7,5 @@ public class UtilsPath {
     public static final String USER_LOGIN_URL = "/user/login";
     public static final String FORGOT_PASSWORD_URL = "/user/forgotPassword";
     public static final String RESET_PASSWORD = "/user/resetPassword";
+    public static final String POST_URL = "/post";
 }

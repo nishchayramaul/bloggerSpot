@@ -12,9 +12,6 @@ public class BloggerSpotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BloggerSpotApplication.class, args);
 	}
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 
 }

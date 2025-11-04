@@ -36,7 +36,4 @@ public class BloggerSpotController {
     public ResponseEntity<?> resetPassword(@RequestBody PasswordResetRequest passwordResetRequest){
         return userRequestHandler.verifyOtp(passwordResetRequest);
     }
-
-
-
 }

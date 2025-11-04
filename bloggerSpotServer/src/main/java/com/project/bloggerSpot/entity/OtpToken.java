@@ -1,4 +1,4 @@
-package com.project.bloggerSpot.Entity;
+package com.project.bloggerSpot.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

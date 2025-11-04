@@ -1,7 +1,7 @@
 package com.project.bloggerSpot.services;
 
-import com.project.bloggerSpot.Entity.OtpToken;
-import com.project.bloggerSpot.Entity.UserEntity;
+import com.project.bloggerSpot.entity.OtpToken;
+import com.project.bloggerSpot.entity.UserEntity;
 import com.project.bloggerSpot.customExceptions.CustomException;
 import com.project.bloggerSpot.model.EmailRequestDto;
 import com.project.bloggerSpot.model.PasswordResetRequest;
@@ -15,9 +15,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -35,14 +34,18 @@ public class UserRequestHandler {
     @Value("classpath:templates/otptemplate.txt")
     private Resource otpTemplate;
 
-    private final BCryptPasswordEncoder passwordEcoder;
+    private final PasswordEncoder passwordEncoder;
     private final UserMasterRepo userMasterRepo;
     private final EmailSender emailSender;
-    public UserRequestHandler(BCryptPasswordEncoder passwordEncoder, UserMasterRepo userMasterRepo, EmailSender emailSender, PasswordResetTokenRepo passwordResetTokenRepo) {
-        this.passwordEcoder = passwordEncoder;
+    public UserRequestHandler(PasswordEncoder passwordEncoder, UserMasterRepo userMasterRepo, EmailSender emailSender, PasswordResetTokenRepo passwordResetTokenRepo) {
+        this.passwordEncoder = passwordEncoder;
         this.userMasterRepo = userMasterRepo;
         this.emailSender = emailSender;
         this.passwordResetTokenRepo = passwordResetTokenRepo;
+    }
+
+    public UserEntity getUserByEmail(String email) {
+        return userMasterRepo.findByEmail(email);
     }
 
     public ResponseEntity<UserDto> userSignup(UserDto user) {
@@ -56,7 +59,7 @@ public class UserRequestHandler {
         }
 
         try {
-            String password = passwordEcoder.encode(user.getConfirmPassword());
+            String password = passwordEncoder.encode(user.getConfirmPassword());
             UserEntity userEntity = new UserEntity();
             userEntity.setFirstName(user.getFirstName());
             userEntity.setLastName(user.getLastName());
@@ -81,7 +84,7 @@ public class UserRequestHandler {
         if (existingEmail == null){
             throw new CustomException("User does not exist, Please sign up");
         }
-        if (!passwordEcoder.matches(user.getConfirmPassword(), existingEmail.getPassword())){
+        if (!passwordEncoder.matches(user.getConfirmPassword(), existingEmail.getPassword())){
             throw new CustomException("Invalid password, Please reset your Password ");
         }
         return ResponseEntity.ok(user);
@@ -113,7 +116,7 @@ public class UserRequestHandler {
         OtpToken token = existingTokenOpt.orElseGet(OtpToken::new);
 
         String otp = otpGenerator();
-        String hashedOtp = passwordEcoder.encode(otp);
+        String hashedOtp = passwordEncoder.encode(otp);
 
         token.setUserEmail(email);
         token.setHashedOtp(hashedOtp);
@@ -177,26 +180,23 @@ public class UserRequestHandler {
                 .findTopByUserEmailOrderByCreatedTimestampDesc(passwordResetRequest.getEmail())
                 .orElseThrow(() -> new CustomException("No OTP found. Please request a new one."));
 
-        // Check if expired
+
         if (token.getExpiryTime().isBefore(LocalDateTime.now())) {
             throw new CustomException("OTP has expired. Please request a new one.");
         }
 
-        // Check if already used
         if (token.isUsed()) {
             throw new CustomException("OTP already used. Please request a new one.");
         }
 
-        // Match OTP
-        if (!passwordEcoder.matches(passwordResetRequest.getOtp(), token.getHashedOtp())) {
+
+        if (!passwordEncoder.matches(passwordResetRequest.getOtp(), token.getHashedOtp())) {
             throw new CustomException("Invalid OTP");
         }
 
-        // Mark OTP as used after successful verification
         token.setUsed(true);
         passwordResetTokenRepo.save(token);
 
-        // Clean up: delete other unused/expired tokens for this user
         passwordResetTokenRepo.deleteAllByUserEmailAndIdNot(passwordResetRequest.getEmail(), token.getId());
 
         return ResponseEntity.ok("OTP verified, reset your Password");
@@ -211,13 +211,12 @@ public class UserRequestHandler {
             throw new CustomException("No account found with this email");
         }
 
-        // Validate new password is provided
         if (passwordResetRequest.getNewPassword() == null || passwordResetRequest.getNewPassword().trim().isEmpty()) {
             throw new CustomException("New password is required");
         }
 
-        // Reset password
-        user.setPassword(passwordEcoder.encode(passwordResetRequest.getNewPassword()));
+
+        user.setPassword(passwordEncoder.encode(passwordResetRequest.getNewPassword()));
         userMasterRepo.save(user);
 
         return ResponseEntity.ok("Password reset successful");

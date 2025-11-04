@@ -17,6 +17,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="username" type="VARCHAR(50)"/>
+            <column name="user_uuid" type="uuid"/>
             <column name="password" type="VARCHAR(255)"/>
             <column name="first_name" type="VARCHAR(100)"/>
             <column name="last_name" type="VARCHAR(100)"/>
@@ -31,11 +32,11 @@
     </changeSet>
 
     <changeSet author="nishchay" id="create_table_password_reset_tokens_V03">
-    <preConditions onFail="MARK_RAN">
-        <not>
-            <tableExists tableName="password_reset_tokens"/>
-        </not>
-    </preConditions>
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="password_reset_tokens"/>
+            </not>
+        </preConditions>
 
         <createTable tableName="password_reset_tokens">
             <column name="id" type="BIGINT" autoIncrement="true"/>
@@ -53,4 +54,3 @@
 
 
 </databaseChangeLog>
-
